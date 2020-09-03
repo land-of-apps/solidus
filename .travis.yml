@@ -4,10 +4,13 @@ version: ~> 1.0
 import:
 - land-of-apps/land-of-apps:travis/ruby-imports.yml
 
-before_script:
-- wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
-- unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python2.7.12/bin/
-- export CHROME_BIN=chromium-browser
+addons:
+  apt:
+    update: true
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 script:
 - cd api;      APPMAP=true bundle exec rspec; cd ..
