@@ -4,8 +4,10 @@ version: ~> 1.0
 import:
 - land-of-apps/land-of-apps:travis/ruby-imports.yml
 
-addons:
-- chrome: stable
+before_script:
+- wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
+- unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python2.7.12/bin/
+- export CHROME_BIN=chromium-browser
 
 script:
 - cd api;      APPMAP=true bundle exec rspec; cd ..
@@ -14,8 +16,6 @@ script:
 - cd frontend; APPMAP=true bundle exec rspec; cd ..
 
 after_script:
-- env DEBUG=true ruby ./upload-appmaps tmp/appmap/rspec
-
 - env DEBUG=true ruby ./upload-appmaps api/tmp/appmap/rspec
 - env DEBUG=true ruby ./upload-appmaps backend/tmp/appmap/rspec
 - env DEBUG=true ruby ./upload-appmaps core/tmp/appmap/rspec
