@@ -4,6 +4,9 @@ version: ~> 1.0
 import:
 - land-of-apps/land-of-apps:travis/ruby-imports.yml
 
+addons:
+- chrome: stable
+
 script:
 - cd api;      APPMAP=true bundle exec rspec; cd ..
 - cd backend;  APPMAP=true bundle exec rspec; cd ..
