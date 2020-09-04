@@ -19,7 +19,9 @@ import:
 
 script:
 - bundle install
-- cd backend; APPMAP=true bundle exec rspec; cd ..
+- cd backend
+- timeout 300 (APPMAP=true bundle exec rspec)
+- cd ..
 
 # - cd api;      APPMAP=true bundle exec rspec; cd ..
 # - cd backend;  APPMAP=true bundle exec rspec; cd ..
