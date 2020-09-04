@@ -19,10 +19,10 @@ import:
 
 script:
 - bundle install
-- cd api;      APPMAP=true bundle exec rspec; cd ..
+# - cd api;      APPMAP=true bundle exec rspec; cd ..
 - cd backend;  APPMAP=true bundle exec rspec; cd ..
-- cd core;     APPMAP=true bundle exec rspec; cd ..
-- cd frontend; APPMAP=true bundle exec rspec; cd ..
+# - cd core;     APPMAP=true bundle exec rspec; cd ..
+# - cd frontend; APPMAP=true bundle exec rspec; cd ..
 
 after_script:
 - env DEBUG=true ruby ./upload-appmaps api/tmp/appmap/rspec
