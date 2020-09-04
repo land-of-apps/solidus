@@ -1,9 +1,6 @@
 # Turn on validation, so we can use import:
 version: ~> 1.0
 
-import:
-- land-of-apps/land-of-apps:travis/ruby-imports.yml
-
 addons:
   chrome: stable
 
@@ -16,6 +13,9 @@ install:
   - sudo mv -f ~/chromedriver /usr/local/share/
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
+import:
+- land-of-apps/land-of-apps:travis/ruby-imports.yml
 
 script:
 - cd api;      APPMAP=true bundle exec rspec; cd ..
