@@ -14,17 +14,13 @@ install:
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 
-  # use timeout
-  - sudo apt-get install timeout
-
 import:
 - land-of-apps/land-of-apps:travis/ruby-imports.yml
 
 script:
 - bundle install
 - cd backend
-- timeout 600s APPMAP=true bundle exec rspec
-
+- ( cmdpid=$BASHPID; (sleep 600; kill $cmdpid) & exec APPMAP=true bundle exec rspec )
 
 # - cd api;      APPMAP=true bundle exec rspec; cd ..
 # - cd backend;  APPMAP=true bundle exec rspec; cd ..
