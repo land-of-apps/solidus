@@ -19,8 +19,7 @@ import:
 
 script:
 - bundle install
-- cd backend
-- ( cmdpid=$BASHPID; (sleep 600; kill $cmdpid) & exec APPMAP=true bundle exec rspec )
+- cd backend; APPMAP=true bundle exec rspec; cd ..
 
 # - cd api;      APPMAP=true bundle exec rspec; cd ..
 # - cd backend;  APPMAP=true bundle exec rspec; cd ..
