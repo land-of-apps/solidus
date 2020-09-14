@@ -18,6 +18,6 @@ script: |
   export -f run_tests
   echo 'api backend core frontend' | parallel --will-cite --line-buffer -d ' ' run_tests
 
-after_script:
-- date
-- env DEBUG=true ruby ./upload-appmaps  */tmp/appmap/rspec
+env:
+  global:
+  - EXTRA_APPMAPS="*/tmp/appmap/rspec"
