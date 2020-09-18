@@ -22,6 +22,9 @@ env:
   global:
   - EXTRA_APPMAPS="*/tmp/appmap/rspec"
 
+# install selenium chrome driver instructions from
+# https://github.com/yizeng/setup-selenium-webdriver-ruby-project-on-travis-ci/blob/master/.travis.yml
+
 jobs:
   include:
   - stage: test
@@ -30,6 +33,16 @@ jobs:
         name: appmaps
         paths:
         - "$EXTRA_APPMAPS"
+    before_script: |
+      install_selenium() (
+        gem install selenium-webdriver
+        wget -N https://chromedriver.storage.googleapis.com/85.0.4183.38/chromedriver_linux64.zip -P ~/Downloads
+        unzip ~/Downloads/chromedriver_linux64.zip -d ~/Downloads
+        sudo mv -f ~/Downloads/chromedriver /usr/local/share/
+        sudo chmod +x /usr/local/share/chromedriver
+        sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+        sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
+      )
     script: |
       run_tests() (
         cd $1
