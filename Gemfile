@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 group :backend, :frontend, :core, :api do
   gemspec require: false
 
-  gem 'appmap'
+  gem 'appmap', github: 'applandinc/appmap-ruby', branch: 'master'
 
   rails_version = ENV['RAILS_VERSION'] || '~> 5.2.0'
   gem 'rails', rails_version, require: false
