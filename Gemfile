@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 
 group :backend, :frontend, :core, :api do
+
   gemspec require: false
 
   # rubocop:disable Bundler/DuplicatedGem
